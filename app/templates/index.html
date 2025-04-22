@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postman Collection to cURL Extractor</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            padding: 2em;
+            max-width: 600px;
+            margin: 2em auto;
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 1em;
+        }
+        .upload-form {
+            background-color: #fff;
+            padding: 2em;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 1em;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5em;
+            font-weight: bold;
+        }
+        input[type="file"] {
+            display: block;
+            width: 100%;
+            padding: 0.5em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 0.7em 1.5em;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            display: block;
+            width: 100%;
+            margin-top: 1em;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .flash-messages {
+            list-style: none;
+            padding: 0;
+            margin-top: 1.5em;
+        }
+        .flash-messages li {
+            padding: 0.8em;
+            margin-bottom: 0.5em;
+            border-radius: 4px;
+        }
+        .flash-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .flash-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .flash-warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+        p {
+            margin-top: 1.5em;
+            text-align: center;
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Postman Collection to cURL Extractor</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flash-messages">
+        {% for category, message in messages %}
+          <li class="flash-{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <div class="upload-form">
+        <form method="post" action="{{ url_for('upload_file') }}" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">Select Postman Collection (.json file):</label>
+                <input type="file" name="file" id="file" accept=".json" required>
+            </div>
+            <button type="submit">Process Collection</button>
+        </form>
+    </div>
+
+    <p>
+        Upload your exported Postman collection file. The tool will extract requests and save them as individual cURL command scripts (.sh files) in the 'exported_collections' directory on the server (mapped locally if using Docker correctly).
+    </p>
+
+</body>
+</html>
