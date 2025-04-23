@@ -1,4 +1,4 @@
-Generate the style for a containerized web application based on the Cincinnati Financial (cinfin.com) corporate branding.
+Generate the style for a containerized web application based on the corporate branding.
 
 **Key Elements:**
 1.  **Color Palette:**
@@ -15,5 +15,5 @@ Generate the style for a containerized web application based on the Cincinnati F
     * Use a container to constrain content width for comfortable reading on wider screens.
     * Include a standard header (potentially incorporating the logo) and footer structure.
 4.  **Logo:**
-    * Integrate the Cincinnati Financial logo prominently, usually in the top-left of the header. Use the official logo file if available. Link: [https://www.cinfin.com/](https://www.cinfin.com/) (Logo visually present here).
+    * Integrate the logo prominently, usually in the top-left of the header. Use the official logo file if available. Link: [https://www.cinfin.com/](https://www.cinfin.com/) (Logo visually present here).
 5.  **Tone:** Ensure the overall style feels professional, modern, secure, and trustworthy, consistent with a financial services company. Avoid overly trendy or flashy elements.
