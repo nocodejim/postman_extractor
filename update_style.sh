@@ -1,3 +1,24 @@
+#!/bin/bash
+
+# Exit immediately if a command exits with a non-zero status.
+set -e
+
+# Define the target HTML file path relative to the script's execution location
+TARGET_HTML_FILE="app/templates/index.html"
+
+echo "[INFO] Preparing to update the style of ${TARGET_HTML_FILE} with revised branding and footer..."
+
+# Check if the target file exists
+if [ ! -f "${TARGET_HTML_FILE}" ]; then
+    echo "[ERROR] Target file not found: ${TARGET_HTML_FILE}"
+    echo "[HINT] Make sure you are running this script from the project's base directory,"
+    echo "       and the file exists at 'app/templates/index.html'."
+    exit 1
+fi
+
+# Use cat and a HERE document (EOF) to overwrite the target HTML file
+# This replaces the entire content of the file with the new HTML structure below.
+cat > "${TARGET_HTML_FILE}" << EOF
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -238,8 +259,15 @@
             Upload your exported Postman collection file. The tool will extract requests and save them as individual cURL command scripts (.sh files) in the 'exported_collections' directory.
         </p>
     </div> <footer class="main-footer">
-        &copy; 2025 Cincinnati Financial - Jim Ball. Internal Tool.
+        &copy; $(date +%Y) Cincinnati Financial - Jim Ball. Internal Tool.
     </footer>
 
 </body>
 </html>
+EOF
+# End of HERE document
+
+echo "[SUCCESS] ${TARGET_HTML_FILE} has been updated with the Cincinnati Financial logo and revised styling/footer."
+echo "[INFO] You may need to clear your browser cache to see the changes."
+echo "[INFO] Now you can re-run './build_and_run.sh' to apply the changes to the running container."
+
