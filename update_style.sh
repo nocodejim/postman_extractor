@@ -6,7 +6,7 @@ set -e
 # Define the target HTML file path relative to the script's execution location
 TARGET_HTML_FILE="app/templates/index.html"
 
-echo "[INFO] Preparing to update the style of ${TARGET_HTML_FILE} with revised branding and footer..."
+echo "[INFO] Preparing to update the style of ${TARGET_HTML_FILE} with second logo..."
 
 # Check if the target file exists
 if [ ! -f "${TARGET_HTML_FILE}" ]; then
@@ -32,15 +32,11 @@ cat > "${TARGET_HTML_FILE}" << EOF
     <style>
         /* --- Base Styles & Variables (Updated) --- */
         :root {
-            /* Retaining primary blue for accents/buttons as per initial request */
             --primary-blue: #1d398d;
-            /* Backgrounds based on analysis */
-            --background-light: #f8f9fa; /* Light gray for overall page bg */
-            --background-white: #FFFFFF; /* White for content containers */
-            /* Text colors based on analysis */
-            --text-dark: #27272a; /* rgb(39, 39, 42) */
-            --text-secondary: #6c757d; /* Keeping a standard secondary gray */
-            /* Borders and Alerts */
+            --background-light: #f8f9fa;
+            --background-white: #FFFFFF;
+            --text-dark: #27272a;
+            --text-secondary: #6c757d;
             --border-color: #dee2e6;
             --success-bg: #d4edda;
             --success-text: #155724;
@@ -54,21 +50,20 @@ cat > "${TARGET_HTML_FILE}" << EOF
         }
 
         html {
-            /* Set base font size, though body usually takes precedence */
             font-size: 16px;
         }
 
         body {
-            font-family: 'Roboto', sans-serif; /* Updated Font */
+            font-family: 'Roboto', sans-serif;
             line-height: 1.6;
-            color: var(--text-dark); /* Updated Text Color */
-            background-color: var(--background-light); /* Use light gray for page */
+            color: var(--text-dark);
+            background-color: var(--background-light);
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            font-weight: 400; /* Default weight */
+            font-weight: 400;
         }
 
         /* --- Layout & Structure --- */
@@ -81,20 +76,21 @@ cat > "${TARGET_HTML_FILE}" << EOF
         }
 
         header.main-header {
-            background-color: var(--background-white); /* White header background */
-            padding: 0.5em 2em; /* Adjusted padding for logo */
+            background-color: var(--background-white);
+            padding: 0.5em 2em;
             border-bottom: 1px solid var(--border-color);
             margin-bottom: 2em;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            display: flex; /* Align logo */
+            display: flex;
             align-items: center;
+            justify-content: space-between; /* Pushes items to ends */
         }
 
-        /* Style for the actual logo image */
-        .header-logo img {
-             display: block; /* Remove extra space below image */
-             /* Height is set on the img tag, width adjusts automatically */
-             max-height: 70px; /* Ensure logo doesn't get too tall */
+        /* Style for the logo containers */
+        .header-logo img,
+        .header-logo-secondary img {
+             display: block;
+             max-height: 70px; /* Consistent max height for both logos */
              width: auto; /* Maintain aspect ratio */
         }
 
@@ -114,11 +110,11 @@ cat > "${TARGET_HTML_FILE}" << EOF
             color: var(--primary-blue);
             text-align: center;
             margin-bottom: 1em;
-            font-weight: 600; /* Heading weight */
+            font-weight: 600;
         }
 
         .upload-form-container {
-            background-color: var(--background-white); /* White form background */
+            background-color: var(--background-white);
             padding: 2em;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -132,7 +128,7 @@ cat > "${TARGET_HTML_FILE}" << EOF
         label {
             display: block;
             margin-bottom: 0.5em;
-            font-weight: 600; /* Semibold labels */
+            font-weight: 600;
             color: var(--text-dark);
         }
 
@@ -145,7 +141,7 @@ cat > "${TARGET_HTML_FILE}" << EOF
             box-sizing: border-box;
             background-color: var(--background-white);
             color: var(--text-dark);
-            font-family: 'Roboto', sans-serif; /* Ensure input uses correct font */
+            font-family: 'Roboto', sans-serif;
         }
 
         input[type="file"]::file-selector-button {
@@ -157,7 +153,7 @@ cat > "${TARGET_HTML_FILE}" << EOF
             cursor: pointer;
             margin-right: 1em;
             transition: background-color 0.2s ease;
-            font-family: 'Roboto', sans-serif; /* Ensure button uses correct font */
+            font-family: 'Roboto', sans-serif;
             font-weight: 400;
         }
         input[type="file"]::file-selector-button:hover {
@@ -178,11 +174,11 @@ cat > "${TARGET_HTML_FILE}" << EOF
             width: 100%;
             margin-top: 1em;
             transition: background-color 0.2s ease;
-            font-family: 'Roboto', sans-serif; /* Ensure button uses correct font */
+            font-family: 'Roboto', sans-serif;
         }
 
         button[type="submit"]:hover {
-            background-color: #162d72; /* Darker blue on hover */
+            background-color: #162d72;
         }
 
         .flash-messages {
@@ -230,6 +226,9 @@ cat > "${TARGET_HTML_FILE}" << EOF
         <div class="header-logo">
             <img alt="Cincinnati Insurance Companies logo" loading="lazy" width="158" height="70" decoding="async" data-nimg="1" src="https://edge.sitecorecloud.io/cincinna-x33xq9h6/media/Project/Cincinnati-Financial/CinFin/Images/campaign-hidden/cic-logo.svg?h=70&amp;iar=0&amp;w=158&amp;hash=929A68574991C73D4F651345D916C134" style="color: transparent;">
         </div>
+        <div class="header-logo-secondary">
+            <img alt="Animated Logo" loading="lazy" src="https://raw.githubusercontent.com/nocodejim/mp4_to_svg/master/video.apng" style="color: transparent;">
+            </div>
     </header>
 
     <div class="page-container">
@@ -267,7 +266,7 @@ cat > "${TARGET_HTML_FILE}" << EOF
 EOF
 # End of HERE document
 
-echo "[SUCCESS] ${TARGET_HTML_FILE} has been updated with the Cincinnati Financial logo and revised styling/footer."
+echo "[SUCCESS] ${TARGET_HTML_FILE} has been updated to include the second logo in the header."
 echo "[INFO] You may need to clear your browser cache to see the changes."
 echo "[INFO] Now you can re-run './build_and_run.sh' to apply the changes to the running container."
 
